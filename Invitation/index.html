@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yasin & Dilla Wedding</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<!-- COVER -->
+<section class="cover">
+  <p>Undangan Pernikahan</p>
+  <h1>Yasin & Dilla</h1>
+
+  <p id="guest"></p>
+
+  <button onclick="openInvite()">Buka Undangan</button>
+</section>
+
+<!-- MAIN -->
+<div id="main" class="hidden">
+
+<section>
+  <h2>Mempelai</h2>
+  <p>Yasin</p>
+  <p>&</p>
+  <p>Dilla</p>
+</section>
+
+<section>
+  <h2>Acara</h2>
+  <p>15 Juni 2026</p>
+  <div id="countdown"></div>
+</section>
+
+<section>
+  <h2>Lokasi</h2>
+  <iframe 
+    src="https://maps.google.com/maps?q=balikpapan&t=&z=13&ie=UTF8&iwloc=&output=embed">
+  </iframe>
+</section>
+
+<section>
+  <h2>RSVP</h2>
+  <a href="https://wa.me/628XXXXXXXXXX" target="_blank">
+    Konfirmasi via WhatsApp
+  </a>
+</section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
