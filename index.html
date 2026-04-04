@@ -1,63 +1,218 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Yasin & Dilla Wedding</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins&display=swap" rel="stylesheet">
+<title>Wedding Yasin & Dilla</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+body{
+ margin:0;
+ font-family:'Montserrat',sans-serif;
+ background:#0B0F1A;
+ color:#fff;
+}
+
+h1,h2{font-family:'Playfair Display';}
+
+/* COVER */
+.cover{
+ height:100vh;
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ background:
+ linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+ url('https://images.unsplash.com/photo-1519741497674-611481863552');
+ background-size:cover;
+ text-align:center;
+}
+
+.cover button{
+ margin-top:20px;
+ padding:12px 30px;
+ background:#D4AF37;
+ border:none;
+ border-radius:30px;
+}
+
+/* SECTION */
+section{
+ padding:80px 20px;
+ text-align:center;
+ opacity:0;
+ transform:translateY(40px);
+ transition:1s;
+}
+
+section.show{
+ opacity:1;
+ transform:translateY(0);
+}
+
+/* COUPLE */
+.couple img{
+ width:140px;
+ border-radius:50%;
+ margin:10px;
+}
+
+/* GALLERY */
+.gallery{
+ display:flex;
+ gap:10px;
+ overflow-x:auto;
+}
+.gallery img{
+ width:200px;
+ border-radius:10px;
+}
+
+/* COUNTDOWN */
+#countdown{
+ font-size:28px;
+ color:#D4AF37;
+}
+
+/* BUTTON */
+.btn{
+ display:inline-block;
+ margin-top:15px;
+ padding:10px 20px;
+ background:#D4AF37;
+ border-radius:20px;
+ color:black;
+ text-decoration:none;
+}
+
+/* MUSIC */
+.music-btn{
+ position:fixed;
+ top:20px;
+ right:20px;
+ background:#D4AF37;
+ border:none;
+ padding:10px;
+ border-radius:50%;
+}
+</style>
 </head>
 
 <body>
 
-<!-- MUSIC -->
 <audio id="music" loop>
-  <source src="music.mp3" type="audio/mp3">
+<source src="music.mp3">
 </audio>
 
 <!-- COVER -->
-<section class="cover">
-  <p>Undangan Pernikahan</p>
-  <h1>Yasin & Dilla</h1>
+<div class="cover">
+ <p id="guest"></p>
+ <h1>Yasin & Dilla</h1>
+ <p>15 Juni 2026</p>
+ <button onclick="openInvite()">Buka Undangan</button>
+</div>
 
-  <p id="guest"></p>
+<button class="music-btn" onclick="toggleMusic()">🔊</button>
 
-  <button onclick="openInvite()">Buka Undangan</button>
-</section>
-
-<!-- MAIN -->
-<div id="main" class="hidden">
-
-<section>
-  <h2>Mempelai</h2>
-  <p>Yasin</p>
-  <p>&</p>
-  <p>Dilla</p>
-</section>
+<div id="main" style="display:none;">
 
 <section>
-  <h2>Acara</h2>
-  <p>15 Juni 2026</p>
-  <div id="countdown"></div>
+ <h2>Assalamu’alaikum</h2>
+ <p>Dengan hormat kami mengundang Anda</p>
 </section>
 
-<section>
-  <h2>Lokasi</h2>
-  <iframe 
-    src="https://maps.google.com/maps?q=balikpapan&t=&z=13&ie=UTF8&iwloc=&output=embed">
-  </iframe>
+<section class="couple">
+ <h2>Mempelai</h2>
+ <img src="https://randomuser.me/api/portraits/men/32.jpg">
+ <p>Yasin</p>
+ <img src="https://randomuser.me/api/portraits/women/44.jpg">
+ <p>Dilla</p>
 </section>
 
 <section>
-  <h2>RSVP</h2>
-  <a href="https://wa.me/628XXXXXXXXXX" target="_blank">
-    Konfirmasi via WhatsApp
-  </a>
+ <h2>Countdown</h2>
+ <div id="countdown"></div>
+</section>
+
+<section>
+ <h2>Love Story</h2>
+ <p>2019 - Pertama bertemu</p>
+ <p>2026 - Menuju pernikahan</p>
+</section>
+
+<section>
+ <h2>Gallery</h2>
+ <div class="gallery">
+   <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486">
+   <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc">
+   <img src="https://images.unsplash.com/photo-1529636798458-92182e662485">
+ </div>
+</section>
+
+<section>
+ <h2>Lokasi</h2>
+ <iframe src="https://maps.google.com/maps?q=jakarta&output=embed"
+ style="width:90%;height:250px;border-radius:12px;"></iframe>
+</section>
+
+<section>
+ <h2>RSVP</h2>
+ <a class="btn" href="https://wa.me/6281234567890?text=Saya%20akan%20hadir">
+   Konfirmasi Kehadiran
+ </a>
+</section>
+
+<section>
+ <h2>Amplop Digital</h2>
+ <p>BCA: 123456789 a.n Yasin</p>
+ <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/QR_code_for_mobile_English_Wikipedia.svg" width="200">
 </section>
 
 </div>
 
-<script src="script.js"></script>
+<script>
+// NAMA TAMU
+const params=new URLSearchParams(window.location.search);
+const nama=params.get("to");
+if(nama){
+ document.getElementById("guest").innerText="Kepada Yth. "+nama;
+}
+
+// OPEN
+function openInvite(){
+ document.querySelector(".cover").style.display="none";
+ document.getElementById("main").style.display="block";
+ document.getElementById("music").play();
+}
+
+// MUSIC
+function toggleMusic(){
+ let m=document.getElementById("music");
+ m.paused?m.play():m.pause();
+}
+
+// ANIMASI
+window.addEventListener("scroll",()=>{
+ document.querySelectorAll("section").forEach(s=>{
+  let pos=s.getBoundingClientRect().top;
+  if(pos<window.innerHeight-100){
+   s.classList.add("show");
+  }
+ });
+});
+
+// COUNTDOWN
+let target=new Date("June 15, 2026").getTime();
+setInterval(()=>{
+ let now=new Date().getTime();
+ let d=Math.floor((target-now)/(1000*60*60*24));
+ document.getElementById("countdown").innerHTML=d+" Hari Lagi";
+},1000);
+</script>
+
 </body>
 </html>
